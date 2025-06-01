@@ -12,11 +12,13 @@ public class FirstPageView : PageViewBase
     [SerializeField] private TextMeshProUGUI _modalCountText;
     [SerializeField] private Button _nextPageButton;
     [SerializeField] private Button _nextModalButton;
+    [SerializeField] private Button _colorPageButton;
 
     [SerializeField] private Text _settingsValueText;
     public IObservable<Unit> OnClickPage => _nextPageButton.OnClickAsObservable();
     public IObservable<Unit> OnClickModal => _nextModalButton.OnClickAsObservable();
 
+    public IObservable<Unit> OnClickColorPage => _colorPageButton.OnClickAsObservable();
     public void SetView(FirstPageModel model)
     {
         _messageText.SetText(model.FirstPageMessage);

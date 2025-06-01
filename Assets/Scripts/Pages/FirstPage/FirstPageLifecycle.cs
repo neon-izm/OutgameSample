@@ -66,12 +66,19 @@ public class FirstPageLifecycle : LifecyclePageBase
             var parameter = await _nextPageUseCase.DoConnect(cancellationToken: ExitCancellationToken);
             _publisher.SendPushEvent(new NextPageBuilder(parameter));
         }));
+        _view.OnClickColorPage.Subscribe(_ =>
+        {
+            _publisher.SendPushEvent(new CharacterColorChangePageBuilder(true,true));
+
+        });
         _view.OnClickModal.Subscribe(_ =>
         {
             // 通信を行わずにパラメータだけを渡して次の画面を開く
             var countParameter = new TestModalLifecycle.CountParameter(1);
             _modalManager.Push(new TestModalBuilder(countParameter), cancellationToken: ExitCancellationToken).Forget();
         });
+        
+        
         _testMessageSubscriber.Subscribe(m =>
         {
             _view.UpdateModalCount(m.Count);
