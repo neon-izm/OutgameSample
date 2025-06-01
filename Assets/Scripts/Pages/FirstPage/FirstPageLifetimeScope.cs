@@ -8,6 +8,7 @@ public class FirstPageLifetimeScope : LifetimeScope
 
     protected override void Configure(IContainerBuilder builder)
     {
+        //builder.Register<GuidCounter>(Lifetime.Singleton);
         builder.Register<FirstPageLifecycle>(Lifetime.Singleton);
         builder.RegisterComponent(_view);
         builder.Register<TestModalLifecycle>(Lifetime.Singleton);
