@@ -43,25 +43,55 @@ public class CharacterColorChangePageView : PageViewBase
             .Subscribe(x =>
             {
                 Debug.Log(x.Sheet.name + " is loaded");
-                /*
-                x.
-                var itemSetSheet = (UnitShopItemSetSheet)x.Sheet;
+                
+                var itemSetSheet = (CharacterColorSheet)x.Sheet;
 
                 switch (x.Index)
                 {
                     case 0:
-                        itemSetSheet.Setup(viewState.RegularItems);
+                        //右手
+                        itemSetSheet.SetColor(OnRightHandColorChanged.ToReadOnlyReactiveProperty().Value);
+                        itemSetSheet._targetColor.Subscribe(
+                            x =>
+                            {
+                                _rightHandColorChanged.OnNext(x);
+                            }
+                            ).AddTo(this);
                         break;
                     case 1:
-                        itemSetSheet.Setup(viewState.SpecialItems);
+                        //左手
+                        itemSetSheet.SetColor(OnLeftHandColorChanged.ToReadOnlyReactiveProperty().Value);
+                        itemSetSheet._targetColor.Subscribe(
+                            x =>
+                            {
+                                _leftHandColorChanged.OnNext(x);
+                            }
+                        ).AddTo(this);
                         break;
                     case 2:
-                        itemSetSheet.Setup(viewState.SaleItems);
+                        //右足
+                        itemSetSheet.SetColor(OnRightFootColorChanged.ToReadOnlyReactiveProperty().Value);
+                        itemSetSheet._targetColor.Subscribe(
+                            x =>
+                            {
+                                _rightFootColorChanged.OnNext(x);
+                            }
+                        ).AddTo(this);
+                        break;
+                    case 3:
+                        //左足
+                        itemSetSheet.SetColor(OnLeftFootColorChanged.ToReadOnlyReactiveProperty().Value);
+                        itemSetSheet._targetColor.Subscribe(
+                            x =>
+                            {
+                                _leftFootColorChanged.OnNext(x);
+                            }
+                        ).AddTo(this);
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        break;
                 }
-                */
+                
             })
             .AddTo(this);
 
@@ -99,33 +129,27 @@ public class CharacterColorChangePageView : PageViewBase
         */
     }
 
-    /*
+   
     // 各部位の色を設定
     public void SetRightHandColor(Color color)
     {
-        if (_rightHandColorDisplay != null)
-            _rightHandColorDisplay.color = color;
+        _rightHandColorChanged.OnNext(color);
     }
 
     public void SetLeftHandColor(Color color)
     {
-        if (_leftHandColorDisplay != null)
-            _leftHandColorDisplay.color = color;
+        _leftHandColorChanged.OnNext(color);
     }
 
     public void SetRightFootColor(Color color)
     {
-        if (_rightFootColorDisplay != null)
-            _rightFootColorDisplay.color = color;
+        _rightFootColorChanged.OnNext(color);
     }
 
     public void SetLeftFootColor(Color color)
     {
-        if (_leftFootColorDisplay != null)
-            _leftFootColorDisplay.color = color;
+        _leftFootColorChanged.OnNext(color);
     }
-    */
-
     private void OnDestroy()
     {
         _rightHandColorChanged?.Dispose();
