@@ -7,7 +7,7 @@ namespace NewDemo.Core.Scripts.Domain.Settings.Model
     /// <summary>
     /// 音声設定を管理するドメインモデル
     /// </summary>
-    public sealed class NewDemoAudioSettings
+    public sealed class DemoAudioSettings
     {
         // 音量設定（0.0f ~ 1.0f）
         private readonly ReactiveProperty<float> _bgmVolume = new ReactiveProperty<float>(1.0f);
