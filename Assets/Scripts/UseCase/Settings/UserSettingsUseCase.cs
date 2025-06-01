@@ -14,7 +14,7 @@ namespace NewDemo.Core.Scripts.UseCase.Settings
     public sealed class UserSettingsUseCase : IDisposable
     {
         private readonly Character _character;
-        private readonly NewDemoAudioSettings _audioSettings;
+        private readonly DemoAudioSettings _audioSettings;
         private readonly UserSettingsRepository _repository;
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
 
@@ -24,7 +24,7 @@ namespace NewDemo.Core.Scripts.UseCase.Settings
 
         public UserSettingsUseCase(
             Character character, 
-            NewDemoAudioSettings audioSettings, 
+            DemoAudioSettings audioSettings, 
             UserSettingsRepository repository)
         {
             _character = character;

@@ -40,7 +40,7 @@ public class RootLifetimeScope : LifetimeScope
         // ドメインモデルをSingletonとして登録
         // ※ UseCase層からのみアクセス可能とする
         builder.Register<Character>(Lifetime.Singleton);
-        builder.Register<NewDemoAudioSettings>(Lifetime.Singleton);
+        builder.Register<DemoAudioSettings>(Lifetime.Singleton);
     }
     /// <summary>
     /// Infrastructure層の依存関係を設定
