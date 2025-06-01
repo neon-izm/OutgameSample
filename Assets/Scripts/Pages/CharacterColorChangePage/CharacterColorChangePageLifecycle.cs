@@ -28,13 +28,13 @@ public class CharacterColorChangePageLifecycle : LifecyclePageBase
 
     protected override UniTask WillPushEnterAsync(CancellationToken cancellationToken)
     {
-        /*
+        
         // 現在の設定値を画面に反映
         _view.SetRightHandColor(_userSettingsUseCase.RightHandColor.Value);
         _view.SetLeftHandColor(_userSettingsUseCase.LeftHandColor.Value);
         _view.SetRightFootColor(_userSettingsUseCase.RightFootColor.Value);
         _view.SetLeftFootColor(_userSettingsUseCase.LeftFootColor.Value);
-        */
+        
         return UniTask.CompletedTask;
     }
 
