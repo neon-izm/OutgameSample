@@ -1269,6 +1269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Footer
       objectReference: {fileID: 0}
+    - target: {fileID: 5168564585288615273, guid: 5674cc97d136746cfbcb52ebe68b51f8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5378515473913577319, guid: 5674cc97d136746cfbcb52ebe68b51f8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
