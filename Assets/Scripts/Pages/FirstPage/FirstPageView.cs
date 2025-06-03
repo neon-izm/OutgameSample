@@ -15,10 +15,18 @@ public class FirstPageView : PageViewBase
     [SerializeField] private Button _colorPageButton;
 
     [SerializeField] private Text _settingsValueText;
-    public IObservable<Unit> OnClickPage => _nextPageButton.OnClickAsObservable();
-    public IObservable<Unit> OnClickModal => _nextModalButton.OnClickAsObservable();
+    public IObservable<Unit> OnClickPage { get; private set; }
+    public IObservable<Unit> OnClickModal { get; private set; }
 
-    public IObservable<Unit> OnClickColorPage => _colorPageButton.OnClickAsObservable();
+    public IObservable<Unit> OnClickColorPage { get; private set; }
+
+    private void Start()
+    {
+        OnClickPage = _nextPageButton.OnClickAsObservable();
+        OnClickModal = _nextModalButton.OnClickAsObservable();
+        OnClickColorPage = _colorPageButton.OnClickAsObservable();
+    }
+
     public void SetView(FirstPageModel model)
     {
         _messageText.SetText(model.FirstPageMessage);

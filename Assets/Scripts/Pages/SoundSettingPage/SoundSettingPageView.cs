@@ -15,11 +15,11 @@ public class SoundSettingPageView : PageViewBase
     [SerializeField] private Slider _bgmVolumeSlider;
     [SerializeField] private Slider _voiceVolumeSlider;
 
-    public IObservable<Unit> OnClickReturnButton => _returnButton.OnClickAsObservable();
-    public IObservable<float> OnSeVolumeChanged => _seVolumeSlider.OnValueChangedAsObservable();
-    public IObservable<float> OnBgmVolumeChanged => _bgmVolumeSlider.OnValueChangedAsObservable();
-    public IObservable<float> OnVoiceVolumeChanged => _voiceVolumeSlider.OnValueChangedAsObservable();
-    
+    public IObservable<Unit> OnClickReturnButton { get; private set; }
+    public IObservable<float> OnSeVolumeChanged { get; private set; }
+    public IObservable<float> OnBgmVolumeChanged { get; private set; }
+    public IObservable<float> OnVoiceVolumeChanged { get; private set; }
+
     public void SetSeVolume(float seVolume)
     {
         _seVolumeSlider.value = seVolume;
@@ -34,9 +34,12 @@ public class SoundSettingPageView : PageViewBase
     {
         _voiceVolumeSlider.value = volume;
     }
-    // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
-        
+        OnClickReturnButton = _returnButton.OnClickAsObservable();
+        OnSeVolumeChanged = _seVolumeSlider.OnValueChangedAsObservable();
+        OnBgmVolumeChanged = _bgmVolumeSlider.OnValueChangedAsObservable();
+        OnVoiceVolumeChanged = _voiceVolumeSlider.OnValueChangedAsObservable();
     }
 }
