@@ -15,7 +15,7 @@ public class NextPageView : PageViewBase
     public IObservable<Unit> OnClickSoundSettingButton { get; private set; }
     public IObservable<Unit> OnClickReturn { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         OnClickSoundSettingButton = _soundSettingButton.OnClickAsObservable();
         OnClickReturn = _returnButton.OnClickAsObservable();

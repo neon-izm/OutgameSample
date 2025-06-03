@@ -35,7 +35,7 @@ public class SoundSettingPageView : PageViewBase
         _voiceVolumeSlider.value = volume;
     }
 
-    private void Start()
+    private void Awake()
     {
         OnClickReturnButton = _returnButton.OnClickAsObservable();
         OnSeVolumeChanged = _seVolumeSlider.OnValueChangedAsObservable();
