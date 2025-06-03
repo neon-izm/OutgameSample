@@ -36,7 +36,7 @@ public class CharacterColorChangePageView : PageViewBase
     public IObservable<Color> OnRightFootColorChanged { get; private set; }
     public IObservable<Color> OnLeftFootColorChanged { get; private set; }
 
-    private void Start()
+    private async void Start()
     {
         OnClickReturnButton = _returnButton.OnClickAsObservable();
         OnRightHandColorChanged = _rightHandColorChanged.AsObservable();
