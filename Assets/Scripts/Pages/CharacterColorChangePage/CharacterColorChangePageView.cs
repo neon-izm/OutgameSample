@@ -29,17 +29,22 @@ public class CharacterColorChangePageView : PageViewBase
     private ReactiveProperty<Color> _leftFootColorChanged = new ReactiveProperty<Color>();
 
     // イベント公開プロパティ
-    public IObservable<Unit> OnClickReturnButton => _returnButton.OnClickAsObservable();
+    public IObservable<Unit> OnClickReturnButton { get; private set; }
     //public IObservable<Unit> OnClickResetButton => _resetButton.OnClickAsObservable();
     
-    public IObservable<Color> OnRightHandColorChanged => _rightHandColorChanged.AsObservable();
-    public IObservable<Color> OnLeftHandColorChanged => _leftHandColorChanged.AsObservable();
-    public IObservable<Color> OnRightFootColorChanged => _rightFootColorChanged.AsObservable();
-    public IObservable<Color> OnLeftFootColorChanged => _leftFootColorChanged.AsObservable();
+    public IObservable<Color> OnRightHandColorChanged { get; private set; }
+    public IObservable<Color> OnLeftHandColorChanged { get; private set; }
+    public IObservable<Color> OnRightFootColorChanged { get; private set; }
+    public IObservable<Color> OnLeftFootColorChanged { get; private set; }
 
     private async void Start()
     {
-        
+        OnClickReturnButton = _returnButton.OnClickAsObservable();
+        OnRightHandColorChanged = _rightHandColorChanged.AsObservable();
+        OnLeftHandColorChanged = _leftHandColorChanged.AsObservable();
+        OnRightFootColorChanged = _rightFootColorChanged.AsObservable();
+        OnLeftFootColorChanged = _leftFootColorChanged.AsObservable();
+
         itemSetTabGroup.OnTabLoaded
             .Subscribe(x =>
             {

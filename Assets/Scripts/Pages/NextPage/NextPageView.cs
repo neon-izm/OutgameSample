@@ -1,10 +1,9 @@
-using System;
-using UnityEngine;
 using ScreenSystem.Page;
-using UnityEngine.UI;
-using UniRx;
+using System;
 using TMPro;
-using UnityEngine.Serialization;
+using UniRx;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class NextPageView : PageViewBase
 {
@@ -13,8 +12,14 @@ public class NextPageView : PageViewBase
     [SerializeField] private Button _returnButton;
 
     [SerializeField] private Button _soundSettingButton;
-    public IObservable<Unit> OnClickSoundSettingButton => _soundSettingButton.OnClickAsObservable();
-    public IObservable<Unit> OnClickReturn => _returnButton.OnClickAsObservable();
+    public IObservable<Unit> OnClickSoundSettingButton { get; private set; }
+    public IObservable<Unit> OnClickReturn { get; private set; }
+
+    private void Start()
+    {
+        OnClickSoundSettingButton = _soundSettingButton.OnClickAsObservable();
+        OnClickReturn = _returnButton.OnClickAsObservable();
+    }
 
     public void SetGuid(int guid)
     {
