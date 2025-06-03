@@ -62,7 +62,7 @@ public class RootLifetimeScope : LifetimeScope
         // ユーザー設定管理UseCase
         // Presentation層はこのUseCaseを通じてのみビジネスロジックにアクセス
         builder.Register<UserSettingsUseCase>(Lifetime.Singleton);
-            
+        
         // 将来の拡張例
         // builder.Register<GameplayUseCase>(Lifetime.Singleton);
         // builder.Register<BattleUseCase>(Lifetime.Singleton);

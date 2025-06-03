@@ -32,6 +32,7 @@ public class FirstPageLifecycle : LifecyclePageBase
         _testMessageSubscriber = testMessageSubscriber;
         _guid = guidCounterService;
         _userSettingsUseCase = userSettingsUseCase;
+        _userSettingsUseCase.InitializeAsync().Forget();
     }
 
     protected override UniTask WillPushEnterAsync(CancellationToken cancellationToken)

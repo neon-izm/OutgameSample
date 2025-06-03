@@ -18,10 +18,11 @@ public class CharacterColorSheet : Sheet
 
     public void SetColor(Color color)
     {
+        Debug.Log($"SetColor {color}");
         _targetGraphic.color = color;
-        _redSlider.value = color.r;
-        _greenSlider.value = color.g;
-        _blueSlider.value = color.b;
+        _redSlider.SetValueWithoutNotify(color.r); 
+        _greenSlider.SetValueWithoutNotify( color.g);
+        _blueSlider.SetValueWithoutNotify( color.b);
     }
     // Start is called before the first frame update
     void Start()
