@@ -278,22 +278,6 @@ namespace NewDemo.Core.Scripts.UseCase.Settings
         }
 
         /// <summary>
-        /// 頭のスケールを設定
-        /// </summary>
-        public void UpdateHeadScale(float scale)
-        {
-            _character.SetHeadScale(scale);
-        }
-
-        /// <summary>
-        /// 足のスケールを設定
-        /// </summary>
-        public void UpdateFootScale(float scale)
-        {
-            _character.SetFootScale(scale);
-        }
-
-        /// <summary>
         /// 頭のスケールを増加
         /// </summary>
         public void IncreaseHeadScale()
