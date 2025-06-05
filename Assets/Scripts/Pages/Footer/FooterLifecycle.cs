@@ -58,34 +58,22 @@ public class FooterLifecycle : IStartable
 
         _view.OnClickHeadDownButton.Subscribe(x =>
         {
-            var current = _userSettingsUseCase.HeadScale.Value;
-            current -= 0.1f;
-            _userSettingsUseCase.UpdateHeadScale(current);
-            _view.SetValueHead(current.ToString());
+            _userSettingsUseCase.DecreaseHeadScale();
         });
         _view.OnClickHeadUpButton.Subscribe(x =>
         {
-            var current = _userSettingsUseCase.HeadScale.Value;
-            current += 0.1f;
-            _userSettingsUseCase.UpdateHeadScale(current);
-            _view.SetValueHead(current.ToString());
+            _userSettingsUseCase.IncreaseHeadScale();
         });
 
         _view.OnClickFootUpButton.Subscribe(x =>
         {
-            var current = _userSettingsUseCase.FootScale.Value;
-            current += 0.1f;
-            _userSettingsUseCase.UpdateFootScale(current);
-            _view.SetValueFoot(current.ToString());
+            _userSettingsUseCase.IncreaseFootScale();
         });
 
 
         _view.OnClickFootDownButton.Subscribe(x =>
         {
-            var current = _userSettingsUseCase.FootScale.Value;
-            current -= 0.1f;
-            _userSettingsUseCase.UpdateFootScale(current);
-            _view.SetValueFoot(current.ToString());
+            _userSettingsUseCase.DecreaseFootScale();
         });
     }
 }
