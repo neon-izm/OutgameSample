@@ -1,9 +1,11 @@
 using System;
+using Demo.Subsystem;
 using UnityEngine;
 using ScreenSystem.Page;
 using UnityEngine.UI;
 using UniRx;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class FirstPageView : PageViewBase
 {
@@ -14,6 +16,7 @@ public class FirstPageView : PageViewBase
     [SerializeField] private Button _nextModalButton;
     [SerializeField] private Button _colorPageButton;
 
+    [SerializeField] private Button _toastButton;
     [SerializeField] private Text _settingsValueText;
     public IObservable<Unit> OnClickPage { get; private set; }
     public IObservable<Unit> OnClickModal { get; private set; }
@@ -25,6 +28,11 @@ public class FirstPageView : PageViewBase
         OnClickPage = _nextPageButton.OnClickAsObservable();
         OnClickModal = _nextModalButton.OnClickAsObservable();
         OnClickColorPage = _colorPageButton.OnClickAsObservable();
+        //toast sample
+        _toastButton.OnClickAsObservable().Subscribe(x =>
+        {
+            Toast.QueueToast("Snackbar:" + DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"));
+        });
     }
 
     public void SetView(FirstPageModel model)
