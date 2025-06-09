@@ -37,6 +37,19 @@ namespace Demo.Subsystem
         }
 
         /// <summary>
+        /// デバッグ用に即時表示したい場合に使います。
+        /// キューを無視するので、行儀はかなり悪いです。
+        /// </summary>
+        /// <param name="text"></param>
+        public static void ShowToastImmediatelyForDebug(string text,float seconds)
+        {
+            //note: 適切な名前のprefabをResources以下に配置しておいてください
+            var prefab = Resources.Load<GameObject>("ToastElement");
+            var go = Instantiate (prefab, _ParentTransform.position, Quaternion.identity,_ParentTransform);
+            go.GetComponent<ToastElement>().Show(text, seconds);
+        }
+        
+        /// <summary>
         /// 外部から気軽に叩くためにstaticで定義
         /// </summary>
         /// <param name="text"></param>
