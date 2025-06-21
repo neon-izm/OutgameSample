@@ -37,7 +37,7 @@ public class NextPageLifecycle : LifecyclePageBase
     {
         var NextModel = new NextPageModel(_parameter);
         _view.SetView(NextModel);
-        _view.SetGuid(_guid.GetGuid);
+        _view.SetGuid(_guid.GuidInt);
         return UniTask.CompletedTask;
     }
 
@@ -48,7 +48,7 @@ public class NextPageLifecycle : LifecyclePageBase
         _view.OnClickSoundSettingButton.Subscribe(_ =>
         {
             _publisher.SendPushEvent(new SoundSettingPageBuilder());
-            Debug.Log("OnClickNextButton:"+_guid.GetGuid);
+            Debug.Log("OnClickNextButton:"+_guid.GuidInt);
         });
         _view.OnClickReturn.Subscribe(_ =>
         {

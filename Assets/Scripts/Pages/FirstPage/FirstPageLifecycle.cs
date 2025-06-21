@@ -39,7 +39,7 @@ public class FirstPageLifecycle : LifecyclePageBase
     {
         var testModel = new FirstPageModel();
         _view.SetView(testModel);
-        _view.SetGuidInt(_guid.GetGuid);
+        _view.SetGuidInt(_guid.GuidInt);
        
         return UniTask.CompletedTask;
     }
@@ -61,6 +61,12 @@ public class FirstPageLifecycle : LifecyclePageBase
 
         Debug.Log(jsonText);
         _view.SetSettingsValue(jsonText);
+
+        _view.OnClickMyPage.Subscribe(_ =>
+        {
+            _publisher.SendPushEvent(new MyPageBuilder());
+        });
+
         _view.OnClickPage.Subscribe(_ => UniTask.Void(async () =>
         {
             // 通信を行い、通信結果を渡して次の画面を開く

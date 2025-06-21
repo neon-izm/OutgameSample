@@ -11,10 +11,10 @@ namespace Demo.Subsystem
     /// </summary>
     public class Toast : MonoBehaviour
     {
-        static readonly ChannelExecutor _executor = new ChannelExecutor();
+        private static readonly ChannelExecutor _executor = new ChannelExecutor();
         [SerializeField] private RectTransform toastParent = default;
 
-        static Transform _ParentTransform;
+        private static Transform _parentTransform;
         void Awake()
         {
             if (toastParent == null)
@@ -22,7 +22,7 @@ namespace Demo.Subsystem
                 Debug.LogError("toastParent is null please set it in the inspector");
                 return;
             }
-            _ParentTransform = toastParent;
+            _parentTransform = toastParent;
             destroyCancellationToken.Register(() => _executor.Dispose());
         }
 
@@ -45,7 +45,7 @@ namespace Demo.Subsystem
         {
             //note: 適切な名前のprefabをResources以下に配置しておいてください
             var prefab = Resources.Load<GameObject>("ToastElement");
-            var go = Instantiate (prefab, _ParentTransform.position, Quaternion.identity,_ParentTransform);
+            var go = Instantiate (prefab, _parentTransform.position, Quaternion.identity,_parentTransform);
             go.GetComponent<ToastElement>().Show(text, seconds);
         }
         
@@ -60,7 +60,7 @@ namespace Demo.Subsystem
             {
                 //note: 適切な名前のprefabをResources以下に配置しておいてください
                 var prefab = Resources.Load<GameObject>("ToastElement");
-                var go = Instantiate (prefab, _ParentTransform.position, Quaternion.identity,_ParentTransform);
+                var go = Instantiate (prefab, _parentTransform.position, Quaternion.identity,_parentTransform);
                 go.GetComponent<ToastElement>().Show(text, seconds);
                 await UniTask.Delay(TimeSpan.FromSeconds(seconds), cancellationToken: ct);
             });

@@ -25,7 +25,7 @@ public class CharacterColorSheet : Sheet
         _blueSlider.SetValueWithoutNotify( color.b);
     }
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         Observable
             .CombineLatest(

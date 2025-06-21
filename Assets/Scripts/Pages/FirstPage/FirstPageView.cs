@@ -15,6 +15,7 @@ public class FirstPageView : PageViewBase
     [SerializeField] private Button _nextPageButton;
     [SerializeField] private Button _nextModalButton;
     [SerializeField] private Button _colorPageButton;
+    [SerializeField] private Button _myPageButton;
 
     [SerializeField] private Button _toastButton;
     [SerializeField] private Text _settingsValueText;
@@ -22,12 +23,13 @@ public class FirstPageView : PageViewBase
     public IObservable<Unit> OnClickModal { get; private set; }
 
     public IObservable<Unit> OnClickColorPage { get; private set; }
-
+    public IObservable<Unit> OnClickMyPage { get; private set; }
     private void Start()
     {
         OnClickPage = _nextPageButton.OnClickAsObservable();
         OnClickModal = _nextModalButton.OnClickAsObservable();
         OnClickColorPage = _colorPageButton.OnClickAsObservable();
+        OnClickMyPage = _myPageButton.OnClickAsObservable();
         //toast sample
         _toastButton.OnClickAsObservable().Subscribe(x =>
         {

@@ -2,15 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VContainer.Unity;
 
 /// <summary>
 /// 仮で作った素朴なサービス
 /// インスタンスの同一性を検証できるので、VContainerのConfigure挙動に使うと良い
 /// この規模ならServiceとつけてUseCase扱いしなくていい
 /// </summary>
-public class GuidCounterService
+public class GuidCounterService : IStartable
 {
-    public int GetGuid
+    private int guid = 0;
+
+    public int GuidInt
     {
         get
         {
@@ -18,9 +21,18 @@ public class GuidCounterService
             {
                 guid = Guid.NewGuid().GetHashCode();
             }
+
             return guid;
         }
     }
 
-    private int guid;
+    public string GetGuidString()
+    {
+        return Guid.NewGuid().ToString();
+    }
+
+    public void Start()
+    {
+        Debug.Log("GuidCounterService Start");
+    }
 }
