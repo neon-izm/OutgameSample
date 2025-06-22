@@ -9,7 +9,7 @@ using UniRx;
 using UnityEngine;
 using VContainer;
 
-[AssetName("Pages/MyPage")]
+[AssetName("MyPage")]
 public class MyPageLifecycle : LifecyclePageBase
 {
     private readonly MyPageView _view;
