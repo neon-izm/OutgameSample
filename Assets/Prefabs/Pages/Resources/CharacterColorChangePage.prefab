@@ -466,13 +466,13 @@ MonoBehaviour:
   sheetContainer: {fileID: 8807876027048543195}
   sources:
   - button: {fileID: 7831852497664254398}
-    sheetResourceKey: Sheets/ColorPickerSheetRightHand
+    sheetResourceKey: ColorPickerSheetRightHand
   - button: {fileID: 1423437722184561829}
-    sheetResourceKey: Sheets/ColorPickerSheetLeftHand
+    sheetResourceKey: ColorPickerSheetLeftHand
   - button: {fileID: 4094864977914826654}
-    sheetResourceKey: Sheets/ColorPickerSheetRightFoot
+    sheetResourceKey: ColorPickerSheetRightFoot
   - button: {fileID: 4036089216601469584}
-    sheetResourceKey: Sheets/ColorPickerSheetLeftFoot
+    sheetResourceKey: ColorPickerSheetLeftFoot
   initialIndex: 0
 --- !u!1 &5670528147139926354
 GameObject:
