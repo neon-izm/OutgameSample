@@ -9,7 +9,7 @@ using UniRx;
 using UnityEngine;
 using VContainer;
 
-[AssetName("Pages/CharacterColorChangePage")]
+[AssetName("CharacterColorChangePage")]
 public class CharacterColorChangePageLifecycle : LifecyclePageBase
 {
     private readonly CharacterColorChangePageView _view;
