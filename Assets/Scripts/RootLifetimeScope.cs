@@ -8,6 +8,7 @@ using ScreenSystem.VContainerExtension;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using UnityScreenNavigator.Runtime.Core.Page;
 
 public class RootLifetimeScope : LifetimeScope
 {
@@ -16,6 +17,8 @@ public class RootLifetimeScope : LifetimeScope
 
     protected override void Configure(IContainerBuilder builder)
     {
+
+        builder.RegisterEntryPoint<GuidCounterService>(Lifetime.Singleton).AsSelf();
         builder.RegisterPageSystem(_container);
         builder.RegisterModalSystem(_modalContainer);
         builder.Register<IHttpClient>(_ => new HttpClient(), Lifetime.Singleton);
@@ -24,11 +27,14 @@ public class RootLifetimeScope : LifetimeScope
         ConfigureInfrastructureLayer(builder);  // Repository層
         ConfigureUseCaseLayer(builder);         // ユースケース層
         //あちこちのViewで参照されるServiceやUseCaseはここで登録する
-        builder.Register<GuidCounterService>(Lifetime.Singleton);
+
         var options = builder.RegisterMessagePipe();
-       
+        
+        // note: RegisterEntryPointはIStartableなどを実装しているクラスを登録するときに使用する.
+        // AsSelf()はRegisterEntryPointで登録したクラスの実体化を即時に行うために使用する.
+        builder.RegisterEntryPoint<PageRoutingService>(Lifetime.Singleton).AsSelf();
         builder.RegisterMessageBroker<MessagePipeCounterMessage>(options);
-        builder.RegisterEntryPoint<TestEntryPoint>();
+        builder.RegisterEntryPoint<TestEntryPoint>().AsSelf();
     }
 
     /// <summary>

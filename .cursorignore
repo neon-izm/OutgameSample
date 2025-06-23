@@ -1,0 +1,16 @@
+# Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)
+*.png
+*.meta
+Logs
+Temp
+Library
+obj
+Assets/TextMesh Pro/Examples    
+Assets/TextMesh Pro/Examples/Font Styles
+Assets/TextMesh Pro/Examples/Font Styles/Examples
+Assets/TextMesh Pro/Examples/Font Styles/Examples/Examples
+Assets/TextMesh Pro/Examples/Font Styles/Examples/Examples/Examples
+Assets/TextMesh Pro/Examples/Font Styles/Examples/Examples/Examples/Examples
+Assets/TextMesh Pro/Examples/Font Styles/Examples/Examples/Examples/Examples/Examples
+Assets/TextMesh Pro/Examples/Font Styles/Examples/Examples/Examples/Examples/Examples/Examples
+Assets/TextMesh Pro/Examples & Extras
