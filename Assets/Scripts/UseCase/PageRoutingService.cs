@@ -5,6 +5,9 @@ using VContainer.Unity;
 using System;
 using ScreenSystem.Page;
 using System.Collections.Generic;
+using System.Linq;
+using ScreenSystem.Attributes;
+using UnityEngine.Assertions;
 
 public class PageRoutingService : IStartable, IDisposable, IPageContainerCallbackReceiver
 {
@@ -68,6 +71,42 @@ public class PageRoutingService : IStartable, IDisposable, IPageContainerCallbac
         Debug.Log($"AfterPop: entered {enterPage?.Identifier}, exited {exitPage?.Identifier}");
     }
 
+    public bool IsTopPage(IPageBuilder pageBuilder, out Page topPage)
+    {
+        var logTopPage = GetPages().LastOrDefault();
+        Assert.IsFalse(logTopPage == null || logTopPage.Identifier == GetAssetName(pageBuilder));
+        topPage = logTopPage;
+        return logTopPage.Identifier == GetAssetName(pageBuilder);
+    }
+
+    /// <summary>
+    /// ページのリストをスタック順に取得する
+    /// </summary>
+    /// <returns>ページのリスト</returns>
+    public List<Page> GetPages()
+    {
+        var ret = _pageContainer.OrderedPagesIds.Select(id => _pageContainer.Pages[id]).ToList();
+        return ret;
+    }
+
+    /// <summary>
+    /// ページのIDを取得する.
+    /// UsePrefabName as Idの場合はページのPrefabNameを返す.
+    /// </summary>
+    /// <returns>ページのID</returns>
+    public List<string> GetPageIds()
+    {
+        return GetPages().Select(page => page.Identifier).ToList();
+    }
+    
+    private string GetAssetName( IPageBuilder pageBuilder)
+    {
+        var lifecyclePageType = pageBuilder.GetType().BaseType.GetGenericArguments().FirstOrDefault(genericType => genericType.IsSubclassOf(typeof(LifecyclePageBase)));
+        var nameAttribute = Attribute.GetCustomAttribute(lifecyclePageType, typeof(AssetNameAttribute)) as AssetNameAttribute;
+        return nameAttribute?.PrefabName;
+    }
+
+
     public List<string> GetPageNames()
     {
         var pageNames = new List<string>();
@@ -106,12 +145,21 @@ public class PageRoutingService : IStartable, IDisposable, IPageContainerCallbac
         return -1; // 見つからなかった場合 -> Pushする
     }
 
-    public void PushOrPopPage(string pageName)
+    public void PushOrPopPage(IPageBuilder pageBuilder)
     {
-        var positionFromEnd = GetPageIdentifer(pageName);
+        if(_pageContainer.IsInTransition){
+            return;
+        }
+        var assetName = GetAssetName(pageBuilder);
+        if(assetName == null){
+            return;
+        }
+        var positionFromEnd = GetPageIdentifer(assetName);
         if (positionFromEnd >= 1) // 見つからなかった場合はPush
         {
-            _pageContainer.Pop(true, positionFromEnd);
+            for(int i = positionFromEnd; 0<i; i--){
+                _publisher.SendPopEvent();
+            }
         }
         else if (positionFromEnd == 0)
         {
@@ -119,8 +167,8 @@ public class PageRoutingService : IStartable, IDisposable, IPageContainerCallbac
         }
         else
         {
-            Debug.Log("Push: " + pageName);
-            _pageContainer.Push(pageName, true, true, null, true, null);
+            Debug.Log("Push: " + pageBuilder.ToString());
+            _publisher.SendPushEvent(pageBuilder);
         }
     }
 }

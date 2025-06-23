@@ -64,11 +64,11 @@ public class FooterLifecycle : IStartable
         }
         _view.OnClickMyPage.Subscribe(x =>
         {
-            _pageRoutingService.PushOrPopPage("MyPage");
+            _pageRoutingService.PushOrPopPage(new MyPageBuilder());
         });
         _view.OnClickFirstPage.Subscribe(x =>
         {
-            _pageRoutingService.PushOrPopPage("FirstPage");
+            _pageRoutingService.PushOrPopPage(new FirstPageBuilder());
         });
 
         _userSettingsUseCase.FootScale.Subscribe(x =>
