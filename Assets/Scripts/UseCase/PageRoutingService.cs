@@ -145,6 +145,21 @@ public class PageRoutingService : IStartable, IDisposable, IPageContainerCallbac
         return -1; // 見つからなかった場合 -> Pushする
     }
 
+    /// <summary>
+    /// ページをPopする.
+    /// ページが見つからなかった場合は何もしない.
+    /// </summary>
+    public void PopPage(){
+        if(_pageContainer.IsInTransition || _pageContainer.OrderedPagesIds.Count <= 1){
+            return;
+        }
+        _publisher.SendPopEvent();
+    }
+
+    /// <summary>
+    /// ページをPushする.すでにそのページがある場合はそこまでPopして戻る
+    /// 現在のページがそのページの場合は何もしない.
+    /// </summary>
     public void PushOrPopPage(IPageBuilder pageBuilder)
     {
         if(_pageContainer.IsInTransition){
