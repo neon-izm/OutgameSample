@@ -7,7 +7,7 @@ public class MyPageLifetimeScope : LifetimeScope
     [SerializeField] private MyPageView _view;
     protected override void Configure(IContainerBuilder builder)
     {
-        builder.Register<MyPageLifecycle>(Lifetime.Singleton);
+        builder.Register<MyPageLifecycle>(Lifetime.Singleton).AsSelf();
         builder.RegisterComponent(_view);
     }
 }

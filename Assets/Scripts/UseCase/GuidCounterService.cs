@@ -31,8 +31,12 @@ public class GuidCounterService : IStartable
         return Guid.NewGuid().ToString();
     }
 
+    /// <summary>
+    /// VContainerのIStartableインターフェースを実装
+    /// MonoBehaviourのStart()メソッドに相当する
+    /// </summary>
     public void Start()
     {
-        Debug.Log("GuidCounterService Start");
+        Debug.Log($"GuidCounterService Start guid:{GuidInt}");
     }
 }

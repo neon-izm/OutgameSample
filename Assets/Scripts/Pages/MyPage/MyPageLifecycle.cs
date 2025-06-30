@@ -46,6 +46,7 @@ public class MyPageLifecycle : LifecyclePageBase
         base.DidPushEnter();
 
         _view.OnClickReturnButton.Subscribe(_ => _publisher.SendPopEvent());
+        _view.OnClickSoundSettingsButton.Subscribe(_ => _publisher.SendPushEvent(new SoundSettingPageBuilder()));
         _view.SetUserName(_guid.GetGuidString()); 
         // TODO: Subscribe to UI events here
         // Example: _view.OnClickReturnButton.Subscribe(_ => _publisher.SendPopEvent());

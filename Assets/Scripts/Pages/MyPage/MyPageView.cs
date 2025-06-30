@@ -12,6 +12,8 @@ public class MyPageView : PageViewBase
     [SerializeField] private Text _userNameText;
     [SerializeField] private Button _returnButton;
 
+    [SerializeField] private Button _soundSettingsButton;
+
     // TODO: Add other UI components here
     // Example: [SerializeField] private Button _settingsButton;
 
@@ -20,6 +22,7 @@ public class MyPageView : PageViewBase
         _userNameText.text = userName;
     }
 
+    public IObservable<Unit> OnClickSoundSettingsButton { get; private set; }
     public IObservable<Unit> OnClickReturnButton { get; private set; }
     // TODO: Add other observable properties here
     // Example: public IObservable<Unit> OnClickSettingsButton { get; private set; }
@@ -34,7 +37,9 @@ public class MyPageView : PageViewBase
     private void Awake()
     {
         OnClickReturnButton = _returnButton.OnClickAsObservable();
+        
         // TODO: Initialize other observables here
+        OnClickSoundSettingsButton = _soundSettingsButton.OnClickAsObservable();
         // Example: OnClickSettingsButton = _settingsButton.OnClickAsObservable();
     }
 } 

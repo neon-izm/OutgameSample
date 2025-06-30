@@ -11,7 +11,7 @@ public class FooterLifetimeScope : LifetimeScope
     {
         Debug.Log("FooterLifetimeScope Configure");
         //builder.Register<GuidCounter>(Lifetime.Singleton);
-        builder.RegisterEntryPoint<FooterLifecycle>(Lifetime.Singleton);
+        builder.RegisterEntryPoint<FooterLifecycle>(Lifetime.Singleton).AsSelf();
 
         builder.RegisterComponent(_view);
         
