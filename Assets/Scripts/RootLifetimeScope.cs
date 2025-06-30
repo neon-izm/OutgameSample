@@ -8,7 +8,6 @@ using ScreenSystem.VContainerExtension;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using UnityScreenNavigator.Runtime.Core.Page;
 
 public class RootLifetimeScope : LifetimeScope
 {
@@ -18,23 +17,24 @@ public class RootLifetimeScope : LifetimeScope
     protected override void Configure(IContainerBuilder builder)
     {
 
-        builder.RegisterEntryPoint<GuidCounterService>(Lifetime.Singleton).AsSelf();
         builder.RegisterPageSystem(_container);
         builder.RegisterModalSystem(_modalContainer);
+        // このようにVContainerのライフサイクルに依存しないクラスはRegisterEntryPointではなく、Registerで登録する
         builder.Register<IHttpClient>(_ => new HttpClient(), Lifetime.Singleton);
         // 層別に登録順序を明確化
         ConfigureDomainLayer(builder);           // コア層
         ConfigureInfrastructureLayer(builder);  // Repository層
         ConfigureUseCaseLayer(builder);         // ユースケース層
         //あちこちのViewで参照されるServiceやUseCaseはここで登録する
-
         var options = builder.RegisterMessagePipe();
         
         // note: RegisterEntryPointはIStartableなどを実装しているクラスを登録するときに使用する.
         // AsSelf()はRegisterEntryPointで登録したクラスの実体化を即時に行うために使用する.
         builder.RegisterEntryPoint<PageRoutingService>(Lifetime.Singleton).AsSelf();
+        builder.RegisterEntryPoint<GuidCounterService>(Lifetime.Singleton).AsSelf();
+
         builder.RegisterMessageBroker<MessagePipeCounterMessage>(options);
-        builder.RegisterEntryPoint<TestEntryPoint>().AsSelf();
+        builder.RegisterEntryPoint<DemoEntryPoint>().AsSelf();
     }
 
     /// <summary>
@@ -73,11 +73,14 @@ public class RootLifetimeScope : LifetimeScope
         // builder.Register<GameplayUseCase>(Lifetime.Singleton);
         // builder.Register<BattleUseCase>(Lifetime.Singleton);
     }
-    private class TestEntryPoint : IStartable
+    /// <summary>
+    /// アプリの初期化の例
+    /// </summary>
+    private class DemoEntryPoint : IStartable
     {
         private readonly PageEventPublisher _publisher;
 
-        public TestEntryPoint(PageEventPublisher publisher)
+        public DemoEntryPoint(PageEventPublisher publisher)
         {
             _publisher = publisher;
         }

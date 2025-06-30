@@ -35,8 +35,8 @@ public class NextPageLifecycle : LifecyclePageBase
 
     protected override UniTask WillPushEnterAsync(CancellationToken cancellationToken)
     {
-        var NextModel = new NextPageModel(_parameter);
-        _view.SetView(NextModel);
+        var nextModel = new NextPageModel(_parameter);
+        _view.SetView(nextModel);
         _view.SetGuid(_guid.GuidInt);
         return UniTask.CompletedTask;
     }

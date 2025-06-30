@@ -23,6 +23,8 @@ namespace Demo.Subsystem
                 return;
             }
             _parentTransform = toastParent;
+            // UnityのMonoBehaviourはDestroyされるときにCancellationTokenを発行するので、
+            // それを使ってChannelExecutorをDisposeする
             destroyCancellationToken.Register(() => _executor.Dispose());
         }
 
