@@ -37,6 +37,6 @@ public class GuidCounterService : IStartable
     /// </summary>
     public void Start()
     {
-        Debug.Log("GuidCounterService Start");
+        Debug.Log($"GuidCounterService Start guid:{GuidInt}");
     }
 }
