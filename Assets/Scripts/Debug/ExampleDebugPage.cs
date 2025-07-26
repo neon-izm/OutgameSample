@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityDebugSheet.Runtime.Core.Scripts;
 using UnityEngine;
-using VContainer;
 
 /// <summary>
 /// note:DefaultDebugPageBaseは内部的にMonoBehaviourを継承している
@@ -12,6 +11,11 @@ public sealed class ExampleDebugPage : DefaultDebugPageBase
     
     GuidCounterService _guidCounterService;
     
+    /// <summary>
+    /// DI解決済みの外部のクラスから呼ばれることを想定した
+    /// 初期化関数
+    /// </summary>
+    /// <param name="guidCounterService"></param>
     public void Init(GuidCounterService guidCounterService)
     {
         _guidCounterService = guidCounterService;

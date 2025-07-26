@@ -19,6 +19,8 @@ public sealed class DebugSheetController : MonoBehaviour
         // Add a link transition to the ExampleDebugPage.
         rootPage.AddPageLinkButton<ExampleDebugPage>("ExampleDebugPage",
             onLoad: page => page.page.Init(_guidCounterService));
+        rootPage
+            .AddPageLinkButton<ExampleForceResolveDebugPage>("DIで渡せないときのサンプル");
         rootPage.AddPageLinkButton<SystemInfoDebugPage>(nameof(SystemInfo));
         rootPage.AddPageLinkButton<ApplicationDebugPage>(nameof(Application));
         rootPage.AddPageLinkButton<TimeDebugPage>(nameof(Time));
