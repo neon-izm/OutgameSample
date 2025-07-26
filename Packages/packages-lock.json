@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.boxqkrtm.ide.cursor": {
+      "version": "https://github.com/boxqkrtm/com.unity.ide.cursor.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.test-framework": "1.1.9"
+      },
+      "hash": "38fecf55e4fd94ccfe58a92ed8ad1a529ba1694e"
+    },
     "com.cysharp.messagepipe": {
       "version": "https://github.com/Cysharp/MessagePipe.git?path=src/MessagePipe.Unity/Assets/Plugins/MessagePipe",
       "depth": 0,
@@ -21,12 +30,19 @@
       "dependencies": {},
       "hash": "c1042b32b7205d1fab2cfb03048dea98af0f20de"
     },
+    "com.harumak.unitydebugsheet": {
+      "version": "https://github.com/Haruma-K/UnityDebugSheet.git?path=/Assets/UnityDebugSheet",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "2b1cf90f0375e10c9c0909cc91c5b92d707f2ce3"
+    },
     "com.harumak.unityscreennavigator": {
       "version": "https://github.com/Haruma-K/UnityScreenNavigator.git?path=/Assets/UnityScreenNavigator",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "470c1d9d2a387661cd2ea89445650a3f764bee71"
+      "hash": "b1228dfd2bc3dd9b9e3879e8509b1a12e5b64e86"
     },
     "com.neuecc.unirx": {
       "version": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
@@ -35,8 +51,23 @@
       "dependencies": {},
       "hash": "284d5c50d3f1ddd9fa7df3d382ea904732a9c2ff"
     },
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.ai.navigation": {
+      "version": "1.1.5",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.ai": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.collab-proxy": {
-      "version": "2.0.5",
+      "version": "2.2.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -61,8 +92,8 @@
       "depth": 0,
       "source": "builtin",
       "dependencies": {
-        "com.unity.ide.visualstudio": "2.0.21",
-        "com.unity.ide.rider": "3.0.25",
+        "com.unity.ide.visualstudio": "2.0.22",
+        "com.unity.ide.rider": "3.0.27",
         "com.unity.ide.vscode": "1.2.5",
         "com.unity.editorcoroutines": "1.0.0",
         "com.unity.performance.profile-analyzer": "1.2.2",
@@ -71,8 +102,8 @@
       }
     },
     "com.unity.ide.rider": {
-      "version": "3.0.25",
-      "depth": 1,
+      "version": "3.0.27",
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.ext.nunit": "1.0.6"
@@ -80,8 +111,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.21",
-      "depth": 1,
+      "version": "2.0.22",
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.test-framework": "1.1.9"
@@ -116,6 +147,22 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.sysroot": {
+      "version": "2.0.10",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.sysroot.linux-x86_64": {
+      "version": "2.0.9",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.sysroot": "2.0.10"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.test-framework": {
       "version": "1.1.33",
       "depth": 0,
@@ -147,7 +194,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.6.5",
+      "version": "1.7.6",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -155,6 +202,16 @@
         "com.unity.modules.director": "1.0.0",
         "com.unity.modules.animation": "1.0.0",
         "com.unity.modules.particlesystem": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.toolchain.macos-arm64-linux-x86_64": {
+      "version": "2.0.4",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.sysroot": "2.0.10",
+        "com.unity.sysroot.linux-x86_64": "2.0.9"
       },
       "url": "https://packages.unity.com"
     },
@@ -168,7 +225,7 @@
       }
     },
     "com.unity.visualscripting": {
-      "version": "1.8.0",
+      "version": "1.9.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -182,11 +239,11 @@
       "depth": 0,
       "source": "git",
       "dependencies": {
-        "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.1.0",
+        "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.5.4",
         "jp.hadashikick.vcontainer": "https://github.com/hadashiA/VContainer.git?path=VContainer/Assets/VContainer#1.13.2",
         "com.harumak.unityscreennavigator": "https://github.com/Haruma-K/UnityScreenNavigator.git?path=/Assets/UnityScreenNavigator#1.6.3"
       },
-      "hash": "17b6c138396d1ed9f2f1708dde064a539784004b"
+      "hash": "d0adc8e06f314bd0fba3e804de5a81e1fcc6e6ab"
     },
     "jp.hadashikick.vcontainer": {
       "version": "https://github.com/hadashiA/VContainer.git?path=VContainer/Assets/VContainer#1.13.2",
